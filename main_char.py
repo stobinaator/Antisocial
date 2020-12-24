@@ -2,13 +2,11 @@ from entity import Entity
 import pygame
 
 PLAYERS_DIR = "players/player.png"
-WINDOW_WIDTH = 600
-WINDOW_HEIGHT = 600
 
 class Hero(Entity):
 	
-	def __init__(self, name, health=100):
-		Entity.__init__(self,name, health)
+	def __init__(self, name):
+		Entity.__init__(self,name)
 		self.image = pygame.image.load(PLAYERS_DIR).convert()
 		self.rect = self.image.get_rect()
 
@@ -49,7 +47,7 @@ class Hero(Entity):
 		return self.rect
 
 	def __str__(self):
-		return f'{self.name} with {get_health(self)} health'
+		return f'{self.name}'
 
 	def __repr__(self):
 		return self.__str__

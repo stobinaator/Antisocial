@@ -4,7 +4,7 @@ game where you try to duck your friends.
 MAIN CHARACTER
 >![](players/player.png)
 
-GOOD GUYS
+GOOD GUY
 >![](players/good/ceci.png)   
 
 BAD GUYS

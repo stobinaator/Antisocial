@@ -1,11 +1,10 @@
 
 class Entity:
 
-	def __init__(self, name, health):
+	def __init__(self, name):
 		self.name = name
-		self.health = health
 
 
-	def get_health(self):
-		return int(self.health)
+	def get_name(self):
+		return self.name
 

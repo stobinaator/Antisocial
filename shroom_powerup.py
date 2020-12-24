@@ -1,9 +1,6 @@
 from entity import Entity
 import pygame, random
 
-WINDOW_WIDTH = 600
-WINDOW_HEIGHT = 600
-
 POWERUP_DIR = "players/powerups/red.png"
 
 POWERUPSIZE = 15
@@ -11,8 +8,8 @@ POWERUPSIZE = 15
 
 class Shroom(Entity):
 	
-	def __init__(self, name, health=100):
-		Entity.__init__(self,name, health)
+	def __init__(self, name):
+		Entity.__init__(self,name)
 		self.image = pygame.image.load(POWERUP_DIR).convert_alpha()
 		self.rect = self.image.get_rect()
 		self.size = 0
@@ -63,7 +60,7 @@ class Shroom(Entity):
 		return self.rect
 
 	def __str__(self):
-		return f'{self.name} with {get_health(self)} health'
+		return f'{self.name}'
 
 	def __repr__(self):
 		return self.__str__

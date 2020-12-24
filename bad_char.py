@@ -1,8 +1,6 @@
 from entity import Entity
 import pygame, random, os
 
-WINDOW_WIDTH = 600
-
 ENEMY_DIR = "players/bad/"
 enemies_list = []
 
@@ -20,8 +18,8 @@ ENEMYMAXSPEED = 4
 
 class Enemy(Entity):
 	
-	def __init__(self, name, health=100):
-		Entity.__init__(self,name, health)
+	def __init__(self, name):
+		Entity.__init__(self,name)
 		self.image = None
 		self.rect = None
 		self.size = 0
@@ -68,7 +66,7 @@ class Enemy(Entity):
 
 
 	def __str__(self):
-		return f'{self.name} with {get_health(self)} health'
+		return f'{self.name}'
 
 
 	def __repr__(self):
