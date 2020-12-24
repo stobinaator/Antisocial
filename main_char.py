@@ -13,21 +13,21 @@ class Hero(Entity):
 		self.rect = self.image.get_rect()
 
 
-	def movePlayerAround(self, moveLeft, moveRight, moveUp, moveDown, playerRect, PLAYERMOVERATE):
+	def movePlayerAround(self, moveLeft, moveRight, moveUp, moveDown, playerRect, PLAYERMOVERATE, resized_w, resized_h):
 	    # move the player around
 	    if moveLeft:
 	            playerRect.move_ip(-1 * PLAYERMOVERATE, 0)
 	            if playerRect.centerx - 10 < 0:
-	                playerRect.x = WINDOW_WIDTH - 10
+	                playerRect.x = resized_w - 10
 	                playerRect.y = playerRect.y
 	    if moveRight:
 	            playerRect.move_ip(PLAYERMOVERATE, 0)
-	            if playerRect.centerx + 10 > WINDOW_WIDTH:
+	            if playerRect.centerx + 10 > resized_w:
 	                playerRect.x = 10
 	                playerRect.y = playerRect.y
 	    if moveUp and playerRect.top > 0:
 	            playerRect.move_ip(0, -1 * PLAYERMOVERATE)
-	    if moveDown and playerRect.bottom < WINDOW_HEIGHT:
+	    if moveDown and playerRect.bottom < resized_h:
 	            playerRect.move_ip(0, PLAYERMOVERATE)
 	    return playerRect
 

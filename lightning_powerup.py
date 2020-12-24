@@ -19,11 +19,11 @@ class Flash(Entity):
 		self.points = 0
 
 
-	def addNewFigure(self):
+	def addNewFigure(self, resized_w, resized_h):
 		size = POWERUPSIZE
 		
-		newFigure = {'rect' : pygame.Rect(random.randint(0, WINDOW_WIDTH - size), 
-                                      random.randint(0, WINDOW_HEIGHT - size), size, size),
+		newFigure = {'rect' : pygame.Rect(random.randint(0, resized_w - size), 
+                                      random.randint(0, resized_h - size), size, size),
 	        		'surface' : pygame.transform.scale(self.get_image(),(size, size)),
 	         }
 
@@ -36,10 +36,9 @@ class Flash(Entity):
 				return True
 		return False
 
-	def addNewFlashToList(
-		self, iteration, powerups):
+	def addNewFlashToList(self, iteration, powerups, resized_w, resized_h):
 		if iteration % 500 == 0:
-			newSpeed = self.addNewFigure()
+			newSpeed = self.addNewFigure(resized_w, resized_h)
 			powerups.append(newSpeed)
 
 		return powerups

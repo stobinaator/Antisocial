@@ -28,15 +28,15 @@ class Enemy(Entity):
 		self.speed = 0
 
 
-	def addNewFigure(self):
+	def addNewFigure(self, resized_w):
 		size = random.randint(ENEMYMINSIZE, ENEMYMAXSIZE)
 		
 		speed = random.randint(ENEMYMINSPEED, ENEMYMAXSPEED)
 		
 		newFigure = {'rect' : pygame.Rect(random.randint(0,
-                        WINDOW_WIDTH - size), 0 - size, size, size),
-	        	'speed' : speed,
-	        	'surface' : pygame.transform.scale(self.get_image(),(size, size)),
+                        resized_w - size), 0 - size, size, size),
+	        		'speed' : speed,
+	        		'surface' : pygame.transform.scale(self.get_image(),(size, size)),
 	         }
 
 		return newFigure

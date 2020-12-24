@@ -20,11 +20,11 @@ class Shroom(Entity):
 		self.points = 200
 
 
-	def addNewFigure(self):
+	def addNewFigure(self, resized_w, resized_h):
 		size = POWERUPSIZE
 		
-		newFigure = {'rect' : pygame.Rect(random.randint(0, WINDOW_WIDTH - size), 
-                                      random.randint(0, WINDOW_HEIGHT - size), size, size),
+		newFigure = {'rect' : pygame.Rect(random.randint(0, resized_w - size), 
+                                      random.randint(0, resized_h - size), size, size),
 	        		'points' : self.points,
 	        		'surface' : pygame.transform.scale(self.get_image(),(size, size)),
 	         }
@@ -40,9 +40,9 @@ class Shroom(Entity):
 					return s
 		return 0
 
-	def addNewShroomToList(self, iteration, powerups):
+	def addNewShroomToList(self, iteration, powerups, resized_w, resized_h):
 		if iteration % 600 == 0:
-			newShroom = self.addNewFigure()
+			newShroom = self.addNewFigure(resized_w, resized_h)
 			powerups.append(newShroom)
 
 		return powerups

@@ -3,7 +3,7 @@ import pygame, random
 
 WINDOW_WIDTH = 600
 
-GOOD_DIR = "players/good/stobko.png"
+GOOD_DIR = "players/good/ceci.png"
 
 
 
@@ -26,14 +26,14 @@ class Goodie(Entity):
 		self.points = 0
 
 
-	def addNewFigure(self):
+	def addNewFigure(self, resized_w):
 		size = random.randint(GOODMINSIZE, GOODMAXSIZE)
 		
 		speed = random.randint(GOODMINSPEED, GOODMAXSPEED)
 		
 		points = 2 * (50-size)
 		newFigure = {'rect' : pygame.Rect(random.randint(0,
-                        WINDOW_WIDTH - size), 0 - size, size, size),
+                        resized_w - size), 0 - size, size, size),
 	        		'speed' : speed,
 	        		'points' : points,
 	        		'surface' : pygame.transform.scale(self.get_image(),(size, size)),

@@ -41,11 +41,11 @@ def load_data(DIRECTORY, HS_FILE):
 def initialization():
 	pygame.init()
 	mainClock = pygame.time.Clock()
-	windowSurface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+	windowSurface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.RESIZABLE)
 	pygame.display.set_caption('Antisocial')
 	pygame.mouse.set_visible(False)
 
-	font = pygame.font.SysFont(None, 48)
+	font = pygame.font.SysFont(None, 35)
 	
 	hs = load_data(DIRECTORY,HS_FILE)
 
@@ -75,7 +75,7 @@ def drawText(text, font, surface, x, y):
 def main_menu(windowSurface, font, hs):
 	windowSurface.fill(BACKGROUNDCOLOR)
 	drawText('∆ Antisocial ∆', font, windowSurface, (WINDOW_WIDTH/3) , (WINDOW_HEIGHT/3))
-	drawText(f'HIGH SCORE: {hs}', font, windowSurface, (WINDOW_WIDTH/3) - 50, (WINDOW_HEIGHT/3) + 100)
+	drawText(f'HIGH SCORE: {hs}', font, windowSurface, (WINDOW_WIDTH/3) - 50, (WINDOW_HEIGHT/3) + 50)
 	pygame.display.update()
 	waitForPlayerToPressKey()
 	return hs
@@ -90,9 +90,9 @@ def moveFigureDown(enemies, reverseCheat, score):
 	return score
 
 
-def delFigurePastBottom(enemies):
+def delFigurePastBottom(enemies, resized_h):
     for e in enemies[:]:
-        if e['rect'].top > WINDOW_HEIGHT:
+        if e['rect'].top > resized_h:
             enemies.remove(e)
 
 def drawFigures(wS, enemies):
@@ -100,56 +100,57 @@ def drawFigures(wS, enemies):
 			wS.blit(e['surface'], e['rect'])
 
 
-def addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, wordNr, wordNr2):
+def addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, wordNr, wordNr2, resized_w):
 	
     if enemyAddCounter >= BADDIERATES[wordNr]['ADDNEWBADDIERATE' + wordNr2]:
         enemyAddCounter = BADDIERATES[wordNr]['ADDNEWBADDIERATE' + wordNr2]
         if enemyAddCounter == BADDIERATES[wordNr]['ADDNEWBADDIERATE' + wordNr2]:
              enemyAddCounter = 0
-             newEnemy = enemy.addNewFigure()
+             newEnemy = enemy.addNewFigure(resized_w)
              enemies.append(newEnemy)
     if goodGuyAddCounter >= BADDIERATES[wordNr]['ADDNEWGOODIERATE' + wordNr2]:
         goodGuyAddCounter = BADDIERATES[wordNr]['ADDNEWGOODIERATE' + wordNr2]
         if goodGuyAddCounter == BADDIERATES[wordNr]['ADDNEWGOODIERATE' + wordNr2]:   
             goodGuyAddCounter = 0
-            newGood = goodie.addNewFigure()
+            newGood = goodie.addNewFigure(resized_w)
             good_guys.append(newGood)
     
     return enemyAddCounter, goodGuyAddCounter
 
 
-def checkScore(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, score):
+def checkScore(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, score, resized_w):
 	if score > 10000:
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'seven', '7')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'seven', '7', resized_w)
 	elif score > 7000:
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'six', '6')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'six', '6', resized_w)
 	elif score > 5000:
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'five', '5')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'five', '5', resized_w)
 	elif score > 3000:	
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'four', '4')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'four', '4', resized_w)
 	elif score > 1500:
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'three', '3')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'three', '3', resized_w)
 	elif score > 500:
-		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'two', '2')
+		return addNewGoodiesAndEnemies(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, 'two', '2', resized_w)
 	elif score < 500:
 		if enemyAddCounter == BADDIERATES['one']['ADDNEWBADDIERATE1']:
 			enemyAddCounter = 0
-			newEnemy = enemy.addNewFigure()
+			newEnemy = enemy.addNewFigure(resized_w)
 			enemies.append(newEnemy)
 
 		if goodGuyAddCounter == BADDIERATES['one']['ADDNEWGOODIERATE1']:
 			goodGuyAddCounter = 0
-			newGood = goodie.addNewFigure()
+			newGood = goodie.addNewFigure(resized_w)
 			good_guys.append(newGood)
 
 	return enemyAddCounter, goodGuyAddCounter
 
 
-def game_over(wS, font, score, lastScore, topScore, hs):
-	drawText('GAME OVER', font, wS, (WINDOW_WIDTH /3), (WINDOW_HEIGHT / 3))
-	drawText(f'Score: {round(score,2)}', font, wS, (WINDOW_WIDTH / 3), (WINDOW_HEIGHT / 3) + 40)
+def game_over(wS, font, score, lastScore, topScore, hs, resized_w, resized_h):
+
+	drawText('GAME OVER', font, wS, (resized_w /3), (resized_h / 3))
+	drawText(f'Score: {round(score,2)}', font, wS, (resized_w / 3), (resized_h / 3) + 30)
 	drawText('Press a key to play again.', font, wS,
-	             (WINDOW_WIDTH / 3) - 80, (WINDOW_HEIGHT / 3) + 120)
+	             (resized_w / 3) - 80, (resized_h / 3) + 100)
 
 	if score > topScore:
 		topScore = score
@@ -157,7 +158,7 @@ def game_over(wS, font, score, lastScore, topScore, hs):
 	if score > hs:
 		hs = score
 		drawText('NEW HIGH SCORE!', font, wS,
-				(WINDOW_WIDTH / 3) - 40, (WINDOW_HEIGHT / 3) + 80)
+				(resized_w / 3) - 40, (resized_h / 3) + 60)
 		with open(os.path.join(DIRECTORY, HS_FILE), 'w') as f:
 			f.write(str(hs) + '\n')
 	lastScore = score
@@ -180,10 +181,11 @@ def main():
 
 	lastScore = 0.0
 	topScore = 0.0
-	
+	resized_w, resized_h = pygame.display.get_surface().get_size()
+
 	while True:
 		
-		heroRect.topleft = (WINDOW_WIDTH / 2, WINDOW_HEIGHT - 50)
+		heroRect.topleft = (resized_w / 2, resized_h - 50)
 
 		score = 0.0
 		iteration = 0
@@ -199,6 +201,7 @@ def main():
 		moveLeft = moveRight = moveUp = moveDown = False
 		reverseCheat = False
 		
+		
 		while True:
 
 			score += 1
@@ -207,6 +210,10 @@ def main():
 				if event.type == pygame.QUIT:
 					pygame.QUIT()
 					sys.exit()
+
+				if event.type == VIDEORESIZE:
+					wS = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+					resized_w, resized_h = pygame.display.get_surface().get_size()
 
 				if event.type == KEYDOWN:
 					if event.key == ord('x'):
@@ -245,26 +252,27 @@ def main():
 				enemyAddCounter += 1
 				goodGuyAddCounter += 1
 
-			enemyAddCounter, goodGuyAddCounter = checkScore(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, score)
+			enemyAddCounter, goodGuyAddCounter = checkScore(enemyAddCounter, goodGuyAddCounter, enemies, good_guys, goodie, enemy, score, resized_w)
 		    
-			flashes = flash.addNewFlashToList(iteration, flashes)
+			flashes = flash.addNewFlashToList(iteration, flashes, resized_w, resized_h)
 
-			shrooms = shroom.addNewShroomToList(iteration, shrooms)
+			shrooms = shroom.addNewShroomToList(iteration, shrooms, resized_w, resized_h)
 
 
-			heroRect = hero.movePlayerAround(moveLeft, moveRight, moveUp, moveDown, heroRect, PLAYERMOVERATE)
+			heroRect = hero.movePlayerAround(moveLeft, moveRight, moveUp, moveDown, heroRect, PLAYERMOVERATE, resized_w, resized_h)
 
 			score = moveFigureDown(enemies, reverseCheat, score)
 			score = moveFigureDown(good_guys, reverseCheat, score)
 
-			delFigurePastBottom(enemies)
-			delFigurePastBottom(good_guys)
+			delFigurePastBottom(enemies, resized_h)
+			delFigurePastBottom(good_guys, resized_h)
 
 			wS.fill(BACKGROUNDCOLOR)
 
 			drawText('Score: %s' % (round(score,2)), font, wS, 10, 0)
-			drawText('Last: %s' % (round(lastScore, 2)), font, wS, 10, 40)
-			drawText('Top: %s' % (round(topScore, 2)), font, wS, 10, 80)
+			drawText('Last: %s' % (round(lastScore, 2)), font, wS, 10, 20)
+			drawText('Top: %s' % (round(topScore, 2)), font, wS, 10, 40)
+			drawText('Speed: %s' % (PLAYERMOVERATE), font, wS, 10, 60)
 
 			wS.blit(heroImage, heroRect)
 
@@ -283,7 +291,8 @@ def main():
 				if random.randint(0,10) % 2 == 0:
 					PLAYERMOVERATE += 1
 				else:
-					PLAYERMOVERATE -= 1
+					if PLAYERMOVERATE > 1:
+						PLAYERMOVERATE -= 1
 				heroRect.move_ip(0, PLAYERMOVERATE)
 
 			if enemy.checkForCollision(heroRect, enemies):
@@ -292,7 +301,7 @@ def main():
 			iteration += 1
 			clock.tick(FPS)
 
-		score,lastScore, topScore, hs = game_over(wS, font, score, lastScore, topScore, hs)
+		score,lastScore, topScore, hs = game_over(wS, font, score, lastScore, topScore, hs, resized_w, resized_h)
 
 if __name__ == '__main__':
 	main()

@@ -5,12 +5,10 @@ MAIN CHARACTER
 >![](players/player.png)
 
 GOOD GUYS
->![](players/good/stobko.png) ![](players/good/shosho.png)  
+>![](players/good/ceci.png)   
 
 BAD GUYS
->![](players/bad/baddie.png)
-![](players/bad/radichat.png) ![](players/bad/danko.png) ![](players/bad/regi.png) ![](players/bad/bocko.png)![](players/bad/anne.png) 
-![](players/bad/ceci.png) ![](players/bad/lazo.png) ![](players/bad/aleko.png) ![](players/bad/monika.png)
+>![](players/bad/radichat.png) ![](players/bad/danko.png) ![](players/bad/regi.png) ![](players/bad/bocko.png)![](players/bad/anne.png) ![](players/bad/lazo.png) ![](players/bad/aleko.png) ![](players/bad/monika.png) ![](players/bad/shosho.png)
 
 POWER UPS
 >![](players/powerups/flash.png) ![](players/powerups/red.png)
