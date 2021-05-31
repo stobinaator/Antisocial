@@ -2,6 +2,15 @@
 
 game where you try ducking your friends.
 
+## Setup
+
+If you get an error saying that you don't have pygame installed.</br>
+
+`pip install -r requirements.txt`
+
+
+## Characters
+
 MAIN CHARACTER
 >![](players/player.png)
 
@@ -15,17 +24,9 @@ POWER UPS
 >![](players/powerups/flash.png) ![](players/powerups/red.png)
 
 
-## Setup
-
-If you get an error saying that you don't have pygame installed.</br>
-
-
-`pip install -r requirements.txt`
-
-
 ## Game Play
 
->You can use the arrows or WASD. </br>
->Use 'ESC' button to terminate the game. </br>
->You can go through the left wall and appear on the right, and vice-versa. </br>
->There is a cheat, 'X' - slows enemies. It costs you score tho. </br>
+You can use the arrows or WASD. </br>
+Use 'ESC' button to terminate the game. </br>
+You can go through the left wall and appear on the right, and vice-versa. </br>
+There is a cheat, 'X' - slows enemies. It costs you score tho. </br>
