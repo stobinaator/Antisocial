@@ -4,11 +4,11 @@ import sys
 import os
 import pygame
 from pygame.locals import *
-from main_char import Hero
-from bad_char import Enemy
-from good_char import Goodie
-from lightning_powerup import Flash
-from shroom_powerup import Shroom
+from classes.main_char import Hero
+from classes.bad_char import Enemy
+from classes.good_char import Goodie
+from classes.lightning_powerup import Flash
+from classes.shroom_powerup import Shroom 
 
 
 WINDOW_WIDTH = 600
@@ -21,8 +21,8 @@ BACKGROUNDCOLOR = (255, 255, 255)
 FPS = 80
 PLAYER_MOVE_RATE = 3
 
-DIRECTORY = os.path.dirname(__file__)
-HS_FILE = 'highscore.txt'
+DIRECTORY = os.path.abspath(os.getcwd())
+HS_FILE = DIRECTORY+'/highscore.txt'
 
 BADDIERATES = {
 'one' : {'ADDNEWBADDIERATE1':25,'ADDNEWGOODIERATE1':30}, # until 500

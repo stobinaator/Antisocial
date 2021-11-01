@@ -1,10 +1,11 @@
 """This is the class for the shroom powerup."""
 import random
 import pygame
-from entity import Entity
+import os
+from .entity import Entity
 
-
-POWERUP_DIR = "players/powerups/red.png"
+DIRECTORY = os.path.abspath(os.getcwd())
+POWERUP_DIR = DIRECTORY+"/players_images/powerups/red.png"
 
 POWERUPSIZE = 15
 

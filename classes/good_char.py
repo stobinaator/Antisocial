@@ -1,9 +1,11 @@
 """This is the class for the good character."""
 import random
 import pygame
-from entity import Entity
+import os
+from .entity import Entity
 
-GOOD_DIR = "players/good/ceci.png"
+DIRECTORY = os.path.abspath(os.getcwd())
+GOOD_DIR = DIRECTORY+"/players_images/good/ceci.png"
 
 GOODMINSIZE = 10
 GOODMAXSIZE = 30

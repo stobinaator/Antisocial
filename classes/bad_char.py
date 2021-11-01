@@ -2,10 +2,11 @@
 import random
 import os
 import pygame
-from entity import Entity
+from .entity import Entity
 
 
-ENEMY_DIR = "players/bad/"
+DIRECTORY = os.path.abspath(os.getcwd())
+ENEMY_DIR = DIRECTORY+"/players_images/bad/"
 enemies_list = []
 
 for dirpath, dirnames, files in os.walk(os.path.abspath(ENEMY_DIR)):

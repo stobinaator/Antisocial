@@ -1,9 +1,11 @@
 """This is the class for the main character."""
 import pygame
-from entity import Entity
+import os
+from .entity import Entity
 
 
-PLAYERS_DIR = "players/player.png"
+DIRECTORY = os.path.abspath(os.getcwd())
+PLAYERS_DIR = DIRECTORY+"/players_images/player.png"
 
 class Hero(Entity):
     """this is the class for the main character that you play with."""
