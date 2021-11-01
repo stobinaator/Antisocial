@@ -2,6 +2,8 @@
 
 A game where while I try to duck my friends I also have to collect powerups in the form of lightnings and mushrooms.
 
+>![](players_images/thumbnail/antisocial.jpg)
+
 ## Setup
 
 Best would be to create a new environment with python version >=3.7.7. </br>
@@ -13,17 +15,17 @@ Best would be to create a new environment with python version >=3.7.7. </br>
 ## Characters
 
 main character
->![](players/player.png) <- me
+>![](players_images/player.png) <- me
 
 good girl
->![](players/good/ceci.png) <- different points depending on the image size.
+>![](players_images/good/ceci.png) <- different points depending on the image size.
 
 gang of bad brodies
->![](players/bad/radichat.png) ![](players/bad/danko.png) ![](players/bad/regi.png) ![](players/bad/bocko.png)![](players/bad/anne.png) ![](players/bad/lazo.png) ![](players/bad/aleko.png) ![](players/bad/monika.png) ![](players/bad/shosho.png)
+>![](players_images/bad/radichat.png) ![](players_images/bad/danko.png) ![](players_images/bad/regi.png) ![](players_images/bad/bocko.png)![](players_images/bad/anne.png) ![](players_images/bad/lazo.png) ![](players_images/bad/aleko.png) ![](players/bad/monika.png) ![](players_images/bad/shosho.png)
 
 power ups
->![](players/powerups/flash.png) <- randomly +1 or -1 speed
->![](players/powerups/red.png) <- +200 points
+>![](players_images/powerups/flash.png) <- randomly +1 or -1 speed
+>![](players_images/powerups/red.png) <- +200 points
 
 
 ## Game Play
